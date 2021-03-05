@@ -17,6 +17,7 @@ parameters:
   command:
     type: string
     description: Command to run.
+resource_class: small
 steps:
   - checkout
   - ssh-setup:

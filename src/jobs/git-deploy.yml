@@ -14,6 +14,7 @@ parameters:
     type: integer
     default: 22
     description: Port to use when connecting over SSH.
+resource_class: small
 steps:
   - checkout
   - ssh-setup:
