@@ -5,7 +5,7 @@ usage:
   version: 2.1
 
   orbs:
-    dokku: aaronstillwell/dokku@0.0.1
+    dokku: aaronstillwell/dokku@0.1.1
 
   workflows:
     db-migrate:
