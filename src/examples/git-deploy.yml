@@ -1,0 +1,13 @@
+description: >
+  Deploy an application to your dokku instance
+
+usage:
+  version: 2.1
+  orbs:
+    dokku: aaronstillwell/dokku@0.0.1
+  workflows:
+    deploy:
+      jobs:
+        - dokku/git-deploy:
+            app-name: my-app
+            host: 0.0.0.0

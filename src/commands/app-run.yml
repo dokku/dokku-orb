@@ -1,0 +1,21 @@
+description: >
+  This command runs a one-off process in a new container under an application.
+
+parameters:
+  app-name:
+    type: string
+    description: Name of the app to run
+  host:
+    type: string
+    description: Your dokku host
+  ssh-port:
+    type: integer
+    default: 22
+    description: Port to use when connecting over SSH
+  command:
+    type: string
+    description: Command to run
+steps:
+  - run:
+      name: dokku run << parameters.command >>
+      command: ssh -p << parameters.ssh-port >> dokku@<< parameters.host >> run << parameters.app-name >> << parameters.command >>

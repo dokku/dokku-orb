@@ -1,0 +1,18 @@
+description: >
+  This command deploys to a dokku instance via git push
+
+parameters:
+  app-name:
+    type: string
+    description: Name of the app to run
+  host:
+    type: string
+    description: Your dokku host
+  ssh-port:
+    type: integer
+    default: 22
+    description: Port to use when connecting over SSH
+steps:
+  - run:
+      name: Deploy to dokku
+      command: git push ssh://dokku@<< parameters.host >>:<< parameters.ssh-port >>/<< parameters.app-name >> "${CIRCLE_SHA1}:refs/heads/${CIRCLE_BRANCH}"
