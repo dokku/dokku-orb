@@ -6,6 +6,12 @@ This orb provides the ability to deploy applications to dokku as part of your CI
 
 ## How to use
 
+### Step 1 - Add a deploy key to CircleCI
+
+The private key for the dokku user you wish to use for deploys will need to be added to CircleCI. See [the docs](https://circleci.com/docs/2.0/add-ssh-key/) for more on how to do this. The fingerprint for this key is required in step 2.
+
+### Step 2 - Use the commands/jobs in your project as necessary
+
 ```
 version: 2.1
 
@@ -18,6 +24,7 @@ workflows:
       - dokku/git-deploy:
           app-name: my-app
           host: dokku.my-domain.io
+          ssh-key-fingerprint: "SO:ME:FIN:G:ER:PR:IN:T"
 ```
 
 See further examples and documentation can be found on the [CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/aaronstillwell/dokku).
@@ -46,7 +53,13 @@ jobs:
           command: |
             # TODO use an API to whitelist IP - e.g AWS, DigitalOcean, Scaleway etc have API's for adding the IP to a security group.
 
+      - add_ssh_keys:
+          fingerprints:
+            - "SO:ME:FIN:G:ER:PR:IN:T"
+
       # Now interface with dokku as normally over SSH
+      - dokku/ssh-setup:
+          host: my-dokku-host.io
       - dokku/git-deploy:
           host: my-dokku-host.io
           app-name: my-dokku-app

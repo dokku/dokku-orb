@@ -13,5 +13,6 @@ usage:
         - dokku/app-run:
             name: db:migrate
             host: my-dokku-host.io
+            ssh-key-fingerprint: "SO:ME:FIN:G:ER:PR:IN:T"
             app: my-dokku-app
             command: bundle exec rails db:migrate

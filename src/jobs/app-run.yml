@@ -10,6 +10,12 @@ parameters:
   host:
     type: string
     description: Your dokku host.
+  ssh-key-fingerprint:
+    type: string
+    description: >
+      Fingerprint of the deploy key that has been added to CircleCI with which
+      to authenticate with your host. See this doc for more info:
+      https://circleci.com/docs/2.0/add-ssh-key/
   ssh-port:
     type: integer
     default: 22
@@ -20,6 +26,9 @@ parameters:
 resource_class: small
 steps:
   - checkout
+  - add_ssh_keys:
+      fingerprints:
+        - "<< parameters.ssh-key-fingerprint >>"
   - ssh-setup:
       host: << parameters.host >>
   - app-run:

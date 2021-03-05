@@ -14,6 +14,9 @@ usage:
       executor: dokku/default
       steps:
         - checkout
+        - add_ssh_keys:
+            fingerprints:
+              - "SO:ME:FIN:G:ER:PR:IN:T"
         - dokku/ssh-setup:
             host: my-dokku-host.io
         - dokku/git-deploy:
