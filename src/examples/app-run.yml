@@ -1,0 +1,17 @@
+description: >
+  This example uses the app-run job to run a one-off task on an app.
+
+usage:
+  version: 2.1
+
+  orbs:
+    dokku: aaronstillwell/dokku@0.0.1
+
+  workflows:
+    db-migrate:
+      jobs:
+        - dokku/app-run:
+            name: db:migrate
+            host: my-dokku-host.io
+            app: my-dokku-app
+            command: bundle exec rails db:migrate

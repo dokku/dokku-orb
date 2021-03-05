@@ -5,15 +5,15 @@ description: >
 parameters:
   host:
     type: string
-    description: Your dokku host
+    description: Your dokku host.
   ssh-port:
     type: integer
     default: 22
-    description: Port to use when connecting over SSH
+    description: Port to use when connecting over SSH.
   known-hosts-file:
     type: string
     default: ~/.ssh/known_hosts
-    description: Path for the known_hosts file
+    description: Path for the known_hosts file.
 
 steps:
   - run:

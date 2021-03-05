@@ -4,17 +4,17 @@ description: >
 parameters:
   app-name:
     type: string
-    description: Name of the app to run
+    description: Name of the app to run.
   host:
     type: string
-    description: Your dokku host
+    description: Your dokku host.
   ssh-port:
     type: integer
     default: 22
     description: Port to use when connecting over SSH
   command:
     type: string
-    description: Command to run
+    description: Command to run.
 steps:
   - run:
       name: dokku run << parameters.command >>

@@ -1,5 +1,5 @@
 description: >
-  Deploy an application to a dokku instance via git push.
+  Run a one-off process under an application on dokku.
 
 executor: default
 
@@ -14,11 +14,15 @@ parameters:
     type: integer
     default: 22
     description: Port to use when connecting over SSH.
+  command:
+    type: string
+    description: Command to run.
 steps:
   - checkout
   - ssh-setup:
       host: << parameters.host >>
-  - git-deploy:
+  - app-run:
       app-name: << parameters.app-name >>
       host: << parameters.host >>
       ssh-port: << parameters.ssh-port >>
+      command: << parameters.command >>

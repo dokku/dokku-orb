@@ -1,5 +1,5 @@
 description: >
-  Deploy an application to your dokku instance
+  Deploy an application to your dokku instance.
 
 usage:
   version: 2.1
@@ -10,4 +10,4 @@ usage:
       jobs:
         - dokku/git-deploy:
             app-name: my-app
-            host: 0.0.0.0
+            host: 1.2.3.4
