@@ -7,7 +7,7 @@ usage:
   version: 2.1
 
   orbs:
-    dokku: aaronstillwell/dokku@0.1.1
+    dokku: aaronstillwell/dokku@0.2.0
 
   jobs:
     deploy:
