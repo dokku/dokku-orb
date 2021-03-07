@@ -16,7 +16,7 @@ The private key for the dokku user you wish to use for deploys will need to be a
 version: 2.1
 
 orbs:
-  dokku: aaronstillwell/dokku@0.2.0
+  dokku: aaronstillwell/dokku@0.2.2
 
 workflows:
   build-test-deploy:
@@ -37,7 +37,7 @@ Your dokku host may be behind a firewall, in which case you might want to whitel
 version: 2.1
 
 orbs:
-  dokku: aaronstillwell/dokku@0.2.0
+  dokku: aaronstillwell/dokku@0.2.2
   ip-address-helper: aaronstillwell/ip-address-helper@1.0.0
 
 jobs:
