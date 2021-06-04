@@ -4,7 +4,7 @@ description: >
 usage:
   version: 2.1
   orbs:
-    dokku: dokku/dokku@0.2.2
+    dokku: dokku/dokku@0.3.0
   workflows:
     deploy:
       jobs:
