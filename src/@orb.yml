@@ -4,4 +4,4 @@ description: >
   Easily deploy applications to Dokku
 
 display:
-  source_url: "https://www.github.com/aaronstillwell/dokku-orb"
+  source_url: "https://www.github.com/dokku/dokku-orb"
