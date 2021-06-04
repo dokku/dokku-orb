@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   # Replace this with your own!
-  dokku: aaronstillwell/dokku@<<pipeline.parameters.dev-orb-version>>
+  dokku: dokku/dokku@<<pipeline.parameters.dev-orb-version>>
   orb-tools: circleci/orb-tools@10.0
 
 # Pipeline Parameters
@@ -39,7 +39,7 @@ workflows:
             - orb-tools/pack
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
-          orb-name: aaronstillwell/dokku
+          orb-name: dokku/dokku
           context: cci-api-key # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
           requires: [hold-for-dev-publish]
       # Trigger an integration workflow to test the
@@ -64,7 +64,7 @@ workflows:
       # be skipped.
       # e.g. [semver:patch] will cause a patch version to be published.
       - orb-tools/dev-promote-prod-from-commit-subject:
-          orb-name: aaronstillwell/dokku
+          orb-name: dokku/dokku
           context: cci-api-key
           add-pr-comment: false
           fail-if-semver-not-indicated: true
