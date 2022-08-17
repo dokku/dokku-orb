@@ -1,35 +1,69 @@
 ---
 description: >
-  Deploy an application to a dokku instance via git push.
+  Deploy an application to a dokku instance
 
 executor: default
 
 parameters:
-  app-name:
+  branch:
+    description: "The branch to deploy when pushing to Dokku (default: master)"
+    default: "master"
     type: string
-    description: Name of the app to run.
-  host:
+  ci-branch-name:
+    description: "The command to run for the action (default: detected from GITHUB_REF)"
+    default: ""
     type: string
-    description: Your dokku host.
-  ssh-key-fingerprint:
+  ci-commit:
+    description: "The commit sha that will be pushed (default: detected from GITHUB_SHA)"
+    default: ""
     type: string
-    description: >
-      Fingerprint of the deploy key that has been added to CircleCI with which
-      to authenticate with your host. See this doc for more info:
-      https://circleci.com/docs/2.0/add-ssh-key/
-  ssh-port:
-    type: integer
-    default: 22
-    description: Port to use when connecting over SSH.
+  command:
+    description: "The command to run for the action (default: deploy)"
+    default: "deploy"
+    type: string
+  deploy-docker-image:
+    description: "A docker image to deploy via `git:from-image`"
+    default: ""
+    type: string
+  deploy-user-name:
+    description: "A username to use when deploying a docker image"
+    default: ""
+    type: string
+  deploy-user-email:
+    description: "The email to use when deploying a docker image"
+    default: ""
+    type: string
+  git-push-flags:
+    description: "A string containing a set of flags to set on push"
+    default: ""
+    type: string
+  git-remote-url:
+    description: "The dokku app's git repository url (in SSH format)"
+    type: string
+  review-app-name:
+    description: "The name of the review app to create or destroy"
+    default: ""
+    type: string
+  ssh-host-key:
+    description: "The results of running `ssh-keyscan -t rsa $HOST`"
+    default: ""
+    type: string
+  ssh-private-key:
+    description: "A private SSH key that has push acces to your Dokku instance"
+    type: string
 resource_class: small
 steps:
   - checkout
-  - add_ssh_keys:
-      fingerprints:
-        - "<< parameters.ssh-key-fingerprint >>"
-  - ssh-setup:
-      host: << parameters.host >>
   - git-deploy:
-      app-name: << parameters.app-name >>
-      host: << parameters.host >>
-      ssh-port: << parameters.ssh-port >>
+      branch: << parameters.branch >>
+      ci-branch-name: << parameters.ci-branch-name >>
+      ci-commit: << parameters.ci-commit >>
+      command: << parameters.command >>
+      deploy-docker-image: << parameters.deploy-docker-image >>
+      deploy-user-name: << parameters.deploy-user-name >>
+      deploy-user-email: << parameters.deploy-user-email >>
+      git-push-flags: << parameters.git-push-flags >>
+      git-remote-url: << parameters.git-remote-url >>
+      review-app-name: << parameters.review-app-name >>
+      ssh-host-key: << parameters.ssh-host-key >>
+      ssh-private-key: << parameters.ssh-private-key >>

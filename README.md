@@ -12,7 +12,8 @@ The private key for the dokku user you wish to use for deploys will need to be a
 
 ### Step 2 - Use the commands/jobs in your project as necessary
 
-```
+```yaml
+---
 version: 2.1
 
 orbs:
@@ -22,9 +23,7 @@ workflows:
   build-test-deploy:
     jobs:
       - dokku/git-deploy:
-          app-name: my-app
-          host: dokku.my-domain.io
-          ssh-key-fingerprint: "SO:ME:FIN:G:ER:PR:IN:T"
+          git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
 ```
 
 See further examples and documentation can be found on the [CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/dokku/dokku).
@@ -33,7 +32,8 @@ See further examples and documentation can be found on the [CircleCI Orb Registr
 
 Your dokku host may be behind a firewall, in which case you might want to whitelist the IP of the builder prior to using the commands exposed through this orb. Though this orb does not include any commands or jobs specific to IP whitelisting, this can be accomplished using other third party orbs. Consider the example below for inspiration.
 
-```
+```yaml
+---
 version: 2.1
 
 orbs:
@@ -57,12 +57,8 @@ jobs:
           fingerprints:
             - "SO:ME:FIN:G:ER:PR:IN:T"
 
-      # Now interface with dokku as normally over SSH
-      - dokku/ssh-setup:
-          host: my-dokku-host.io
       - dokku/git-deploy:
-          host: my-dokku-host.io
-          app-name: my-dokku-app
+          git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
         
       - run:
           name: Remove the IP
@@ -86,4 +82,3 @@ workflows:
 ### How to Contribute
 
 We welcome [issues](https://github.com/dokku/dokku-orb/issues) to and [pull requests](https://github.com/dokku/dokku-orb/pulls) against this repository!
-

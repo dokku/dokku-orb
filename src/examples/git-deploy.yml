@@ -10,6 +10,4 @@ usage:
     deploy:
       jobs:
         - dokku/git-deploy:
-            app-name: my-app
-            host: 1.2.3.4
-            ssh-key-fingerprint: "SO:ME:FIN:G:ER:PR:IN:T"
+            git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
