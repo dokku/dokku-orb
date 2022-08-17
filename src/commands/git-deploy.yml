@@ -1,3 +1,4 @@
+---
 description: >
   This command deploys to a dokku instance via git push.
 

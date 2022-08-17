@@ -1,3 +1,4 @@
+---
 description: >
   Configures the known_hosts file in the build container using ssh-keyscan to prevent
   any prompt regarding the hosts public key when connecting to your host over SSH.

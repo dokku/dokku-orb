@@ -1,3 +1,4 @@
+---
 version: 2.1
 
 orbs:
@@ -26,8 +27,8 @@ workflows:
   test-pack:
     unless: << pipeline.parameters.run-integration-tests >>
     jobs:
-      - orb-tools/lint # Lint Yaml files
-      - orb-tools/pack # Pack orb source
+      - orb-tools/lint  # Lint Yaml files
+      - orb-tools/pack  # Pack orb source
 
       # If you accept building open source forks, protect your secrects behind a restricted context.
       # A job containing restricted context (which holds your orb publishing credentials) may only be accessed by a user with proper permissions.
@@ -40,7 +41,7 @@ workflows:
       # Publish development version(s) of the orb.
       - orb-tools/publish-dev:
           orb-name: dokku/dokku
-          context: cci-api-key # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
+          context: cci-api-key  # A restricted context containing your private publishing credentials. Will only execute if approved by an authorized user.
           requires: [hold-for-dev-publish]
       # Trigger an integration workflow to test the
       # dev:${CIRCLE_SHA1:0:7} version of your orb
