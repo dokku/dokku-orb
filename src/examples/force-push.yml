@@ -1,0 +1,20 @@
+---
+description: >
+  If the remote app has been previously pushed manually from a location other
+  than CI, it may be necessary to enable force pushing to avoid git errors.
+
+usage:
+  version: 2.1
+  orbs:
+    dokku: dokku/dokku@0.1.0
+  workflows:
+    deploy:
+      jobs:
+        - checkout
+        - add_ssh_keys:
+            fingerprints:
+              - "$SSH_KEY_FINGERPRINT"
+        - dokku/deploy:
+            git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
+            # specify `--force` as a flag for git pushes
+            git-push-flags: '--force'

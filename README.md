@@ -15,13 +15,12 @@ The private key for the dokku user you wish to use for deploys will need to be a
 ```yaml
 ---
 version: 2.1
-
 orbs:
-  dokku: dokku/dokku@0.3.0
-
+  dokku: dokku/dokku@0.1.0
 workflows:
-  build-test-deploy:
+  deploy:
     jobs:
+      - checkout
       - add_ssh_keys:
           fingerprints:
             - "$SSH_KEY_FINGERPRINT"
@@ -29,53 +28,7 @@ workflows:
           git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
 ```
 
-See further examples and documentation can be found on the [CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/dokku/dokku).
-
-### IP whitelisting
-
-Your dokku host may be behind a firewall, in which case you might want to whitelist the IP of the builder prior to using the commands exposed through this orb. Though this orb does not include any commands or jobs specific to IP whitelisting, this can be accomplished using other third party orbs. Consider the example below for inspiration.
-
-```yaml
----
-version: 2.1
-
-orbs:
-  dokku: dokku/dokku@0.3.0
-  ip-address-helper: dokku/ip-address-helper@1.0.0
-
-jobs:
-  deploy-behind-firewall:
-    executor: dokku/default
-    resource_class: small
-    steps:
-      - checkout
-      # See implementation of this orb - it is just a convenient way of grabbing the externally facing IP address of the builder
-      - ip-address-helper/set-env-var
-      - run:
-          name: Whitelist the IP
-          command: |
-            # TODO use an API to whitelist IP - e.g AWS, DigitalOcean, Scaleway etc have API's for adding the IP to a security group.
-
-      - add_ssh_keys:
-          fingerprints:
-            - "SO:ME:FIN:G:ER:PR:IN:T"
-
-      - dokku/deploy:
-          git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
-        
-      - run:
-          name: Remove the IP
-          command: |
-            # TODO use an API to remove the IP
-          when: always # this line ensures this will still be run even if the job fails for some reason
-
-workflows:
-  deploy:
-    jobs:
-      - deploy
-```
-
-**Note:** Several caveats exist with the above approach, including but not limited to the fact that docker jobs are not likely to have exclusive use of an external IP address and in the unlikely case of infrastructure failure, an IP could fail to be removed from your whitelist. If security is paramount [CircleCI's Runner](https://circleci.com/docs/2.0/runner-overview/#introduction) is likely a better a fit.
+See more examples on the [CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/dokku/dokku).
 
 ## Resources
 

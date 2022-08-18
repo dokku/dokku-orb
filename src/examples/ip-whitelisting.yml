@@ -1,0 +1,36 @@
+---
+description: >
+  Your dokku host may be behind a firewall, in which case you might want to
+  whitelist the IP of the builder prior to using the commands exposed through
+  this orb. Though this orb does not include any commands or jobs specific to
+  IP whitelisting, this can be accomplished using other third party orbs.
+  Consider the example below for inspiration.
+
+usage:
+  version: 2.1
+  orbs:
+    dokku: dokku/dokku@0.3.0
+    ip-address-helper: dokku/ip-address-helper@1.0.0
+  workflows:
+    deploy:
+      jobs:
+        - checkout
+        # See implementation of this orb - it is just a convenient way of grabbing the externally facing IP address of the builder
+        - ip-address-helper/set-env-var
+        - run:
+            name: Whitelist the IP
+            command: |
+              # TODO use an API to whitelist IP - e.g AWS, DigitalOcean, Scaleway etc have API's for adding the IP to a security group.
+
+        - add_ssh_keys:
+            fingerprints:
+              - "SO:ME:FIN:G:ER:PR:IN:T"
+
+        - dokku/deploy:
+            git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
+
+        - run:
+            name: Remove the IP
+            command: |
+              # TODO use an API to remove the IP
+            when: always # this line ensures this will still be run even if the job fails for some reason
