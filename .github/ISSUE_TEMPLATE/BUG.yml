@@ -1,17 +1,10 @@
+---
 name: "\U0001F41E  Bug Report"
 description: Report any identified bugs.
 title: 'Bug: '
 labels: [bug]
 # assignees: ''
 body:
-  - type: checkboxes
-    attributes:
-      label: "Is there an existing issue for this?"
-      description: "Please search [here](https://github.com/dokku/dokku-orb/issues?q=is%3Aissue) to see if an issue already exists for the bug you encountered"
-      options:
-      - label: "I have searched the existing issues"
-        required: true
-
   - type: input
     attributes:
       label: "Orb version"
