@@ -5,16 +5,6 @@ name: 'lint'
 on: [push, pull_request]
 
 jobs:
-  hadolint:
-    name: hadolint
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Clone
-        uses: actions/checkout@v2
-      - name: Run hadolint
-        uses: hadolint/hadolint-action@c27bd9edc1e95eed30474db8f295ff5807ebca14
-        # v1.5.0 => c27bd9edc1e95eed30474db8f295ff5807ebca14
-
   markdown-lint:
     name: markdown-lint
     runs-on: ubuntu-20.04
