@@ -52,6 +52,8 @@ steps:
       command: <<include(scripts/inject-ssh-private-key)>>
 
   - run:
+      command: env
+  - run:
       name: Deploy to dokku
       environment:
         BRANCH: << parameters.branch >>
