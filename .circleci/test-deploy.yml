@@ -16,10 +16,11 @@ jobs:
       - image: dokku/ci-docker-image:0.2.1
     steps:
       - checkout
-      # Run your orb's commands to validate them.
+      - add_ssh_keys:
+          fingerprints:
+            - "$SSH_KEY_FINGERPRINT"
       - dokku/deploy:
           git-remote-url: ssh://dokku@dokku.com:22/ci-orb-test
-          ssh-key-fingerprint: $SSH_KEY_FINGERPRINT
 
 workflows:
   test-deploy:
