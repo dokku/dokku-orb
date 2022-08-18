@@ -73,4 +73,3 @@ steps:
       git-remote-url: << parameters.git-remote-url >>
       review-app-name: << parameters.review-app-name >>
       ssh-host-key: << parameters.ssh-host-key >>
-      ssh-private-key: << parameters.ssh-private-key >>
