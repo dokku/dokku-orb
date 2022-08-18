@@ -17,7 +17,8 @@ jobs:
     steps:
       - checkout
       # Run your orb's commands to validate them.
-      - dokku/deploy
+      - dokku/deploy:
+          git-remote-url: ssh://dokku@dokku.com:22/ci-orb-test
 
 workflows:
   test-deploy:
