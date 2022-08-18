@@ -5,4 +5,5 @@ description: >
   Easily deploy applications to Dokku
 
 display:
-  source_url: "https://www.github.com/dokku/dokku-orb"
+  home_url: "https://dokku.com"
+  source_url: "https://github.com/dokku/dokku-orb"

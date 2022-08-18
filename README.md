@@ -22,7 +22,7 @@ orbs:
 workflows:
   build-test-deploy:
     jobs:
-      - dokku/git-deploy:
+      - dokku/deploy:
           git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
 ```
 
@@ -57,7 +57,7 @@ jobs:
           fingerprints:
             - "SO:ME:FIN:G:ER:PR:IN:T"
 
-      - dokku/git-deploy:
+      - dokku/deploy:
           git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
         
       - run:

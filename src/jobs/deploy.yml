@@ -1,6 +1,8 @@
 ---
 description: >
-  This command deploys to a dokku instance via git push.
+  Deploy an application to a dokku instance
+
+executor: default
 
 parameters:
   branch:
@@ -49,24 +51,19 @@ parameters:
   ssh-private-key:
     description: "A private SSH key that has push acces to your Dokku instance"
     type: string
+resource_class: small
 steps:
-  - run:
-      name: Deploy to dokku
-      command: |
-        export BRANCH=<< parameters.branch >>
-        export CI_BRANCH_NAME=<< parameters.ci-branch-name >>
-        export CI_COMMIT=<< parameters.ci-commit >>
-        export COMMAND=<< parameters.command >>
-        export DEPLOY_DOCKER_IMAGE=<< parameters.deploy-docker-image >>
-        export DEPLOY_USER_NAME=<< parameters.deploy-user-name >>
-        export DEPLOY_USER_EMAIL=<< parameters.deploy-user-email >>
-        export GIT_PUSH_FLAGS=<< parameters.git-push-flags >>
-        export GIT_REMOTE_URL=<< parameters.git-remote-url >>
-        export REVIEW_APP_NAME=<< parameters.review-app-name >>
-        export SSH_HOST_KEY=<< parameters.ssh-host-key >>
-        export SSH_PRIVATE_KEY=<< parameters.ssh-private-key >>
-        /bin/dokku-deploy
-  - run:
-      name: Unlock Dokku app for deploys
-      when: always
-      command: /bin/dokku-unlock
+  - checkout
+  - deploy:
+      branch: << parameters.branch >>
+      ci-branch-name: << parameters.ci-branch-name >>
+      ci-commit: << parameters.ci-commit >>
+      command: << parameters.command >>
+      deploy-docker-image: << parameters.deploy-docker-image >>
+      deploy-user-name: << parameters.deploy-user-name >>
+      deploy-user-email: << parameters.deploy-user-email >>
+      git-push-flags: << parameters.git-push-flags >>
+      git-remote-url: << parameters.git-remote-url >>
+      review-app-name: << parameters.review-app-name >>
+      ssh-host-key: << parameters.ssh-host-key >>
+      ssh-private-key: << parameters.ssh-private-key >>

@@ -9,5 +9,5 @@ usage:
   workflows:
     deploy:
       jobs:
-        - dokku/git-deploy:
+        - dokku/deploy:
             git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
