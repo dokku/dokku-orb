@@ -61,8 +61,7 @@ steps:
         GIT_REMOTE_URL: << parameters.git-remote-url >>
         REVIEW_APP_NAME: << parameters.review-app-name >>
         SSH_HOST_KEY: << parameters.ssh-host-key >>
-      command: |
-        <<include(scripts/deploy)>>
+      command: <<include(scripts/deploy)>>
   - run:
       name: Unlock Dokku app for deploys
       when: always
