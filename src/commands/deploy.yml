@@ -48,6 +48,11 @@ parameters:
     type: string
 steps:
   - run:
+      name: Inject SSH_PRIVATE_KEY into environment
+      command: |
+        echo "export SSH_PRIVATE_KEY=$(cat $HOME/.ssh/id_rsa)" >> ${BASH_ENV}
+
+  - run:
       name: Deploy to dokku
       environment:
         BRANCH: << parameters.branch >>
