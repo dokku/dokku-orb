@@ -2,7 +2,8 @@
 version: 2.1
 
 description: >
-  Easily deploy applications to Dokku
+  Deploy docker images and git repositories to normal or
+  review apps on a remote Dokku server
 
 display:
   home_url: "https://dokku.com"
