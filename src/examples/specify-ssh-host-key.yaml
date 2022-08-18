@@ -1,0 +1,23 @@
+---
+description: >
+  By default, this action will scan the host for it's SSH host key and use that
+  value directly. This may not be desirable for security compliance reasons.
+
+  The `SSH_HOST_KEY` value can be retrieved by calling
+  `ssh-keyscan -t rsa $HOST`, where `$HOST` is the Dokku server's hostname.
+
+usage:
+  version: 2.1
+  orbs:
+    dokku: dokku/dokku@0.1.0
+  workflows:
+    deploy:
+      jobs:
+        - checkout
+        - add_ssh_keys:
+            fingerprints:
+              - "$SSH_KEY_FINGERPRINT"
+        - dokku/deploy:
+            git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
+            # specify an alternative ssh host key
+            ssh-host-key: $SOME_SSH_HOST_KEY

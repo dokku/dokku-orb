@@ -1,0 +1,30 @@
+---
+description: >
+  Builds a docker image in CI, pushes the image to the remote Docker Hub
+  repository, and then notifies Dokku to deploy the built image.
+
+usage:
+  version: 2.1
+  orbs:
+    dokku: dokku/dokku@0.1.0
+  workflows:
+    deploy:
+      jobs:
+        - checkout
+        - add_ssh_keys:
+            fingerprints:
+              - "$SSH_KEY_FINGERPRINT"
+        - run:
+            name: build and push image
+            command: |
+              # build the image
+              docker build -t "$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1" .
+
+              # login to docker hub
+              echo "$DOCKERHUB_TOKEN" | docker login --username "$DOCKERHUB_USERNAME" --password-stdin
+
+              # push the image
+              docker push "$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1"
+        - dokku/deploy:
+            deploy-docker-image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1
+            git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname

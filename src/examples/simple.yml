@@ -5,10 +5,11 @@ description: >
 usage:
   version: 2.1
   orbs:
-    dokku: dokku/dokku@0.3.0
+    dokku: dokku/dokku@0.1.0
   workflows:
     deploy:
       jobs:
+        - checkout
         - add_ssh_keys:
             fingerprints:
               - "$SSH_KEY_FINGERPRINT"
