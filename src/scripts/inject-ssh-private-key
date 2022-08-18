@@ -1,2 +1,0 @@
-echo "export SSH_PRIVATE_KEY=$(cat "$HOME/.ssh/id_rsa")" >> $BASH_ENV
-echo 'export MY_ENV_VAR="FOO"' >> $BASH_ENV

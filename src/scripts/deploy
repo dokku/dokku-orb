@@ -1,0 +1,5 @@
+export SSH_PRIVATE_KEY=$(cat "$HOME/.ssh/id_rsa")
+export MY_ENV_VAR="FOO"
+
+env
+/bin/dokku-deploy
