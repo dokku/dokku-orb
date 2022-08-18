@@ -18,6 +18,7 @@ jobs:
       - checkout
       # Run your orb's commands to validate them.
       - dokku/deploy
+
 workflows:
   test-deploy:
     jobs:

@@ -46,9 +46,6 @@ parameters:
     description: "The results of running `ssh-keyscan -t rsa $HOST`"
     default: ""
     type: string
-  ssh-private-key:
-    description: "A private SSH key that has push acces to your Dokku instance"
-    type: string
 steps:
   - run:
       name: Deploy to dokku
@@ -64,7 +61,6 @@ steps:
         GIT_REMOTE_URL: << parameters.git-remote-url >>
         REVIEW_APP_NAME: << parameters.review-app-name >>
         SSH_HOST_KEY: << parameters.ssh-host-key >>
-        SSH_PRIVATE_KEY: << parameters.ssh-private-key >>
       command: /bin/dokku-deploy
   - run:
       name: Unlock Dokku app for deploys

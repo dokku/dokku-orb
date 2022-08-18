@@ -24,6 +24,7 @@ workflows:
     jobs:
       - dokku/deploy:
           git-remote-url: ssh://dokku@dokku.myhost.ca:22/appname
+          ssh-key-fingerprint: "SO:ME:FIN:G:ER:PR:IN:T"
 ```
 
 See further examples and documentation can be found on the [CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/dokku/dokku).
