@@ -2,7 +2,7 @@
 
 This orb provides the ability to deploy applications to dokku as part of your CI/CD pipelines.
 
-[![CircleCI Build Status](https://circleci.com/gh/dokku/dokku-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/dokku/dokku-orb) [![CircleCI Orb Version](https://img.shields.io/badge/endpoint.svg?url=https://badges.circleci.io/orb/dokku/dokku)](https://circleci.com/orbs/registry/orb/dokku/dokku) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/dokku/dokku-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+[![CircleCI Build Status](https://circleci.com/gh/dokku/dokku-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/dokku/dokku-orb) ![Orb Version Badge](https://badges.circleci.com/orbs/dokku/dokku.svg) [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/dokku/dokku-orb/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-lightblue.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
 ## How to use
 
