@@ -20,6 +20,7 @@ jobs:
           fingerprints:
             - "$SSH_KEY_FINGERPRINT"
       - dokku/deploy:
+          git-push-flags: --force
           git-remote-url: ssh://dokku@dokku.com:22/ci-orb-test
 
 workflows:
