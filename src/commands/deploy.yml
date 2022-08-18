@@ -68,14 +68,5 @@ steps:
       when: always
       command: <<include(scripts/unlock)>>
       environment:
-        BRANCH: << parameters.branch >>
-        CI_BRANCH_NAME: << parameters.ci-branch-name >>
-        CI_COMMIT: << parameters.ci-commit >>
-        COMMAND: << parameters.command >>
-        DEPLOY_DOCKER_IMAGE: << parameters.deploy-docker-image >>
-        DEPLOY_USER_NAME: << parameters.deploy-user-name >>
-        DEPLOY_USER_EMAIL: << parameters.deploy-user-email >>
-        GIT_PUSH_FLAGS: << parameters.git-push-flags >>
         GIT_REMOTE_URL: << parameters.git-remote-url >>
         REVIEW_APP_NAME: << parameters.review-app-name >>
-        SSH_HOST_KEY: << parameters.ssh-host-key >>
