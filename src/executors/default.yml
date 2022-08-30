@@ -4,7 +4,7 @@ description: >
   tools to interact with a remote Dokku host
 
 docker:
-  - image: dokku/ci-docker-image:<<parameters.tag>>'
+  - image: dokku/ci-docker-image:<<parameters.tag>>
 
 parameters:
   tag:
