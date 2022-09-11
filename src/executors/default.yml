@@ -8,7 +8,7 @@ docker:
 
 parameters:
   tag:
-    default: 0.2.1
+    default: 0.4.0
     description: >
       Pick a specific dokku/ci-docker-image image variant:
       https://hub.docker.com/r/dokku/ci-docker-image/tags
