@@ -46,6 +46,10 @@ parameters:
     description: "The results of running `ssh-keyscan -t rsa $HOST`"
     default: ""
     type: string
+  trace:
+    description: "Allows users to debug what the action is performing by enabling shell trace mode"
+    default: ""
+    type: string
 
 steps:
   - run:
@@ -63,6 +67,7 @@ steps:
         GIT_REMOTE_URL: << parameters.git-remote-url >>
         REVIEW_APP_NAME: << parameters.review-app-name >>
         SSH_HOST_KEY: << parameters.ssh-host-key >>
+        TRACE: << parameters.trace >>
   - run:
       name: Unlock Dokku app for deploys
       when: always
@@ -70,3 +75,4 @@ steps:
       environment:
         GIT_REMOTE_URL: << parameters.git-remote-url >>
         REVIEW_APP_NAME: << parameters.review-app-name >>
+        TRACE: << parameters.trace >>

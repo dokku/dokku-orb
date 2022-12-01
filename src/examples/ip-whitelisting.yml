@@ -33,4 +33,4 @@ usage:
             name: Remove the IP
             command: |
               # TODO use an API to remove the IP
-            when: always # this line ensures this will still be run even if the job fails for some reason
+            when: always  # this line ensures this will still be run even if the job fails for some reason
