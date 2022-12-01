@@ -13,7 +13,7 @@ jobs:
   # You may want to add additional validation steps to ensure the commands are working as expected.
   command-tests:
     docker:
-      - image: dokku/ci-docker-image:0.4.0
+      - image: dokku/ci-docker-image:0.7.0
     steps:
       - checkout
       - add_ssh_keys:

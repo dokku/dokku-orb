@@ -54,6 +54,10 @@ parameters:
       Fingerprint of the deploy key that has been added to CircleCI with which
       to authenticate with your host. See this doc for more info:
       https://circleci.com/docs/2.0/add-ssh-key/
+  trace:
+    description: "Allows users to debug what the action is performing by enabling shell trace mode"
+    default: ""
+    type: string
 
 resource_class: small
 steps:
@@ -73,3 +77,4 @@ steps:
       git-remote-url: << parameters.git-remote-url >>
       review-app-name: << parameters.review-app-name >>
       ssh-host-key: << parameters.ssh-host-key >>
+      trace: << parameters.trace >>
